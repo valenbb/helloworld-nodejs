@@ -1,5 +1,10 @@
 pipeline {
-  agent none
+  agent {
+    kubernetes {
+      label 'nodejs-app-inline'
+      yamlFile 'nodejs-pod.yaml'
+    }
+  }
   options { 
     buildDiscarder(logRotator(numToKeepStr: '2'))
     skipDefaultCheckout true
